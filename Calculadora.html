@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tarifa</title>
+</head>
+
+<body>
+
+    <br><br> <!-- Dos saltos de línea -->
+    <p>Hola, esperamos que esta calculadora pueda ser de ayuda.</p>
+    <p>Recuerda que aquí solamente calculamos si el viaje superó el 30% de incremento sobre la tarifa estimada.</p>
+    <br><br> <!-- Dos saltos de línea -->
+
+    <label for="tarifa_estimada">Tarifa Estimada: </label>
+    <input type="number" id="tarifa_estimada">
+
+    <label for="tarifa_final">Tarifa Final: </label>
+    <input type="number" id="tarifa_final">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <p id="resultado"></p>
+    <br><br>
+    <script>
+        function calcular() {
+            let tarifa_estimada = parseFloat(document.getElementById("tarifa_estimada").value);
+            let tarifa_final = parseFloat(document.getElementById("tarifa_final").value);
+
+            let incremento = ((tarifa_final - tarifa_estimada) / tarifa_estimada) * 100;
+
+            if (incremento >= 30) {
+                document.getElementById("resultado").innerText = "Superó el 30%. Si cumple con todas las condiciones para compensar, debemos compensar solamente $" + tarifa_estimada;
+            } else {
+                document.getElementById("resultado").innerText = "No superó el 30% de incremento. Si cumple con todas las condiciones para compensar, podemos completar el 100% de la tarifa final, es decir $" + tarifa_final;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
